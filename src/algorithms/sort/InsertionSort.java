@@ -1,7 +1,7 @@
 package algorithms.sort;
 
 public class InsertionSort {
-    public int[] insertionSort(int[] array) {
+    public void insertionSort(int[] array) {
         int current, j;
 
         for (int i = 1; i < array.length; ++i) {
@@ -15,7 +15,5 @@ public class InsertionSort {
 
             array[j + 1] = current;
         }
-
-        return array;
     }
 }
