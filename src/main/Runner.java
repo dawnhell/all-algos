@@ -1,15 +1,19 @@
 package main;
 
 import algorithms.sort.MergeSort;
+import algorithms.sort.QuickSort;
 
 public class Runner {
     public Runner() {
-        int[] arr = new RandomGenerator(100).getArray();
-        MergeSort mergeSort = new MergeSort();
+//        MergeSort mergeSort = new MergeSort();
+        QuickSort quickSort = new QuickSort();
+
+        int[] arr = new RandomGenerator(10).getArray();
 
         long startTime = System.currentTimeMillis();
 
-        mergeSort.mergeSort(arr, 0, arr.length - 1);
+//        mergeSort.mergeSort(arr, 0, arr.length - 1);
+        quickSort.quickSort(arr, 0, arr.length - 1);
 
         long endTime = System.currentTimeMillis();
 
