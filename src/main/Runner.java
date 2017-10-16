@@ -1,28 +1,23 @@
 package main;
 
-import algorithms.sort.InsertionSort;
-import algorithms.sort.MergeSort;
-import algorithms.sort.QuickSort;
-import algorithms.sort.QuickWithInsertionSort;
+import algorithms.search.BinarySearch;
+import algorithms.search.InterpolationSearch;
+import helpers.FileHelper;
 
 public class Runner {
     public Runner() {
-        InsertionSort insertionSort = new InsertionSort();
-        MergeSort mergeSort = new MergeSort();
-        QuickSort quickSort = new QuickSort();
-        QuickWithInsertionSort quickWithInsertionSort = new QuickWithInsertionSort();
+        int keyToFind = 21978;
+        FileHelper fileHelper = new FileHelper();
+        BinarySearch binarySearch = new BinarySearch();
+        InterpolationSearch interpolationSearch = new InterpolationSearch();
 
-        int[] arr = new RandomGenerator(10).getArray();
-
-        long startTime = System.currentTimeMillis();
-
-//        insertionSort.insertionSort(arr);
-//        mergeSort.mergeSort(arr, 0, arr.length - 1);
-//        quickSort.quickSort(arr, 0, arr.length - 1);
-        quickWithInsertionSort.quickWithInsertionSort(arr, 0, arr.length - 1);
-
-        long endTime = System.currentTimeMillis();
-
-        System.out.println("\nTotal time spent: " + (endTime - startTime) + " ms.");
+        for (int i = 0; i < 20; ++i) {
+            binarySearch.recursionDepth = 0;
+            interpolationSearch.recursionDepth = 0;
+            int []array = fileHelper.readArrayFromFile("array_" + i);
+            int index1 = binarySearch.search(array, keyToFind, 0, array.length - 1);
+            int index2 = interpolationSearch.search(array, keyToFind, 0, array.length - 1);
+            System.out.println("Array #" + i + "  -  " + index1 + ", depth = " + binarySearch.recursionDepth + "  -  " + index2 + ", depth = " + interpolationSearch.recursionDepth);
+        }
     }
 }
